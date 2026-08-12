@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Guardian Roofing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html#home" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="none" stroke="#C8102E" stroke-width="4"/><path d="M18 32 L30 20 L42 32" fill="none" stroke="#C8102E" stroke-width="4"/><path d="M22 32 L22 44 L38 44 L38 32" fill="none" stroke="#C8102E" stroke-width="4"/></svg>
+        </span>
+        <span class="brand-text">GUARDIAN ROOFING & CONST.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#products">Products</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="tel:0549835040" class="cta-button call-now"><span>Call Now</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background: linear-gradient(120deg, rgba(26, 26, 26, 0.92), rgba(200, 16, 46, 0.8)), url('Steel framed home, stronger than wood but also more expensive.jpg') center/cover no-repeat;">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow">Dedicated Gallery</span>
+          <h1>Guardian Roofing Gallery</h1>
+          <p>Review our projects, steel truss work, installation footage and material finishes in one focused showcase.</p>
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn btn-primary">Request a Quote</a>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Project Gallery</span>
+          <h2>Images and videos of our roofing work</h2>
+          <p class="gallery-intro">The same gallery experience from the main site, now in a single page with local video previews and truss project highlights.</p>
+        </div>
+        <div class="gallery-filters" role="tablist">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="images">Images</button>
+          <button class="filter-btn" data-filter="videos">Videos</button>
+          <button class="filter-btn" data-filter="residential">Residential</button>
+          <button class="filter-btn" data-filter="materials">Materials</button>
+          <button class="filter-btn" data-filter="installation">Installation</button>
+          <button class="filter-btn" data-filter="trusses">Trusses</button>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="gallery-card" data-category="trusses" data-type="image" data-media-src="Steel framed home, stronger than wood but also more expensive.jpg"><img src="Steel framed home, stronger than wood but also more expensive.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="residential" data-type="image" data-media-src="FINISH1.jpg"><img src="FINISH1.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="materials" data-type="image" data-media-src="WAREHOUSE.jpg"><img src="WAREHOUSE.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="installation" data-type="image" data-media-src="PREPARE.jpg"><img src="PREPARE.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="residential" data-type="image" data-media-src="FINISH2.jpg"><img src="FINISH2.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="materials" data-type="image" data-media-src="TOP ROOF.jpg"><img src="TOP ROOF.jpg" alt="Image preview" loading="lazy" /></button>
+          <button class="gallery-card" data-category="installation" data-type="video" data-video-src="videos/Vid1.mp4"><img src="Steel framed home, stronger than wood but also more expensive.jpg" alt="Video preview" loading="lazy" /><span class="play-icon" aria-hidden="true">▶</span></button>
+          <button class="gallery-card" data-category="installation" data-type="video" data-video-src="videos/Vid2.mp4"><img src="FINAL WORK.jpg" alt="Video preview" loading="lazy" /><span class="play-icon" aria-hidden="true">▶</span></button>
+          <button class="gallery-card" data-category="materials" data-type="video" data-video-src="videos/Vid3.mp4"><img src="WAREHOUSE.jpg" alt="Video preview" loading="lazy" /><span class="play-icon" aria-hidden="true">▶</span></button>
+          <button class="gallery-card" data-category="trusses" data-type="video" data-video-src="videos/Vid4.mp4"><img src="DRONE CAPTURE.jpg" alt="Video preview" loading="lazy" /><span class="play-icon" aria-hidden="true">▶</span></button>
+        </div>
+      </div>
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-content">
+          <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery preview">×</button>
+          <div class="lightbox-media" id="lightboxMedia"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark footer-mark"></span>
+          <span>GUARDIAN ROOFING</span>
+        </div>
+        <p>Quality roofing materials, truss fabrication, and installation across Ghana.</p>
+      </div>
+      <div class="footer-links">
+        <p><strong>Quick links</strong></p>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <div>
+        <p><strong>Contact</strong></p>
+        <p>TEL: 0549835040 | 0532586438 | 0506120353</p>
+        <p>Accra • Kumasi</p>
+        <p>EMAIL: guardianroofing055@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Guardian Roofing. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

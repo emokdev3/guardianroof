@@ -8,8 +8,6 @@ const lightbox = document.getElementById('lightbox');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxMedia = document.getElementById('lightboxMedia');
 const lightboxTitle = document.querySelector('.lightbox-title');
-const carouselTrack = document.getElementById('carouselTrack');
-let activeIndex = 0;
 
 function setHeaderState() {
   header.classList.toggle('scrolled', window.scrollY > 20);
@@ -132,43 +130,61 @@ lightbox.addEventListener('click', (event) => {
   }
 });
 
-function rotateCarousel() {
-  if (carouselTrack && carouselTrack.children.length > 0) {
-    const cards = carouselTrack.children.length;
-    activeIndex = (activeIndex + 1) % cards;
-    carouselTrack.style.transform = `translateX(-${activeIndex * 100}%)`;
+// Carousel functionality
+function initCarousel() {
+  const track = document.getElementById('carouselTrack');
+  if (!track || track.children.length === 0) return;
+  
+  let currentIndex = 0;
+  const totalCards = track.children.length;
+  
+  function slideCarousel() {
+    currentIndex = (currentIndex + 1) % totalCards;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
+  
+  // Start carousel after a short delay to ensure DOM is ready
+  setTimeout(() => {
+    slideCarousel();
+    setInterval(slideCarousel, 4500);
+  }, 100);
 }
 
-// Start carousel rotation immediately and every 4.5 seconds
-if (carouselTrack && carouselTrack.children.length > 0) {
-  rotateCarousel();
-  setInterval(rotateCarousel, 4500);
-}
-
-const contactForm = document.getElementById('contactForm');
-const whatsappNumber = '233549835040';
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+// Contact form WhatsApp integration
+function initContactForm() {
+  const contactForm = document.getElementById('contactForm');
+  const whatsappNumber = '233549835040';
+  
+  if (!contactForm) return;
+  
+  contactForm.addEventListener('submit', function(event) {
     event.preventDefault();
-
+    
     const formData = new FormData(contactForm);
-    const name = formData.get('name')?.toString().trim() || 'Customer';
-    const phone = formData.get('phone')?.toString().trim() || 'N/A';
-    const location = formData.get('location')?.toString().trim() || 'N/A';
-    const message = formData.get('message')?.toString().trim() || 'No message provided';
-
+    const name = (formData.get('name') || '').trim() || 'Customer';
+    const phone = (formData.get('phone') || '').trim() || 'N/A';
+    const location = (formData.get('location') || '').trim() || 'N/A';
+    const message = (formData.get('message') || '').trim() || 'No message provided';
+    
     const whatsappMessage = `Hello Guardian Roofing,\n\nMy name is ${name}.\nPhone: ${phone}\nLocation: ${location}\n\nMessage: ${message}`;
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    // Open WhatsApp in a new window
-    setTimeout(() => {
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    }, 100);
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
     
     // Reset form
     contactForm.reset();
   });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    initCarousel();
+    initContactForm();
+  });
+} else {
+  initCarousel();
+  initContactForm();
 }

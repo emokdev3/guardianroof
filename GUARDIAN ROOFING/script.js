@@ -133,9 +133,17 @@ lightbox.addEventListener('click', (event) => {
 });
 
 function rotateCarousel() {
-  const cards = carouselTrack.children.length;
-  activeIndex = (activeIndex + 1) % cards;
-  carouselTrack.style.transform = `translateX(-${activeIndex * 100}%)`;
+  if (carouselTrack && carouselTrack.children.length > 0) {
+    const cards = carouselTrack.children.length;
+    activeIndex = (activeIndex + 1) % cards;
+    carouselTrack.style.transform = `translateX(-${activeIndex * 100}%)`;
+  }
+}
+
+// Start carousel rotation immediately and every 4.5 seconds
+if (carouselTrack && carouselTrack.children.length > 0) {
+  rotateCarousel();
+  setInterval(rotateCarousel, 4500);
 }
 
 const contactForm = document.getElementById('contactForm');
@@ -146,17 +154,21 @@ if (contactForm) {
     event.preventDefault();
 
     const formData = new FormData(contactForm);
-    const name = formData.get('name')?.toString().trim();
-    const phone = formData.get('phone')?.toString().trim();
-    const location = formData.get('location')?.toString().trim();
-    const message = formData.get('message')?.toString().trim();
+    const name = formData.get('name')?.toString().trim() || 'Customer';
+    const phone = formData.get('phone')?.toString().trim() || 'N/A';
+    const location = formData.get('location')?.toString().trim() || 'N/A';
+    const message = formData.get('message')?.toString().trim() || 'No message provided';
 
-    const whatsappMessage = `Hello Guardian Roofing, my name is ${name || 'Customer'}. My phone number is ${phone || 'N/A'}. I am located in ${location || 'N/A'}. Message: ${message || 'No message provided.'}`;
+    const whatsappMessage = `Hello Guardian Roofing,\n\nMy name is ${name}.\nPhone: ${phone}\nLocation: ${location}\n\nMessage: ${message}`;
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    window.open(whatsappUrl, '_blank');
+    // Open WhatsApp in a new window
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }, 100);
+    
+    // Reset form
+    contactForm.reset();
   });
 }
-
-setInterval(rotateCarousel, 4500);
